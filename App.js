@@ -1,3 +1,4 @@
+const appDisplay = document.querySelector('.app-container')
 const tiles = document.querySelector(".tiles-container");
 const keyboard = document.querySelector(".keyboard-container");
 const messageDisplay = document.querySelector(".message-container");
@@ -58,6 +59,7 @@ const tilesRows = [
 let curentRow = 0;
 let currentCube = 0;
 let isGameOver = false;
+let isShowModal = false;
 
 tilesRows.forEach((row, rowIndex) => {
   const rowElement = document.createElement("div");
@@ -79,6 +81,20 @@ tilesRows.forEach((row, rowIndex) => {
 
   tiles.append(rowElement);
 });
+
+const help = document.getElementById("question").addEventListener("click", () => {
+    const modal = document.getElementById('modal');
+
+    /*if (modal.style.display === 'none') {
+        modal.style.display = 'block';
+    } else {
+        modal.style.display = 'none'
+    }*/
+
+    modal.classList.toggle('hideModal')
+    
+});
+
 
 const handleClick = (letter) => {
   if (!isGameOver) {
@@ -137,7 +153,6 @@ const checkRow = () => {
     fetch(`http://localhost:8000/check/?word=${guess}`)
       .then((res) => res.json())
       .then((json) => {
-
         if (json.valid == false) {
           showMessage("Word not in list");
           return;
