@@ -6,7 +6,7 @@ const messageDisplay = document.querySelector(".message-container");
 let wordle;
 
 const getWordle = () => {
-  fetch("http://localhost:8000/word")
+  fetch("https://wordle-vxq0.onrender.com/word")
     .then((response) => response.json())
     .then((json) => {
       wordle = json.toUpperCase();
@@ -83,16 +83,16 @@ tilesRows.forEach((row, rowIndex) => {
 });
 
 const help = document.getElementById("question").addEventListener("click", () => {
-    const modal = document.getElementById('modal');
+  const modal = document.getElementById('modal');
 
-    /*if (modal.style.display === 'none') {
-        modal.style.display = 'block';
-    } else {
-        modal.style.display = 'none'
-    }*/
+  /*if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+  } else {
+      modal.style.display = 'none'
+  }*/
 
-    modal.classList.toggle('hideModal')
-    
+  modal.classList.toggle('hideModal')
+
 });
 
 
@@ -150,7 +150,7 @@ const checkRow = () => {
   const guess = tilesRows[curentRow].join("");
 
   if (currentCube > 4) {
-    fetch(`http://localhost:8000/check/?word=${guess}`)
+    fetch(`https://wordle-vxq0.onrender.com/check/?word=${guess}`)
       .then((res) => res.json())
       .then((json) => {
         if (json.valid == false) {
